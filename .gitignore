@@ -1,0 +1,22 @@
+node_modules
+dist
+.expo
+.turbo
+storybook-static
+*.log
+
+# Caches gerados por ferramenta
+.tamagui
+.vite
+
+# Storybook on-device (gerado pelo sb-rn-get-stories)
+apps/native-demo/.storybook/storybook.requires.ts
+
+# Build do pacote
+packages/ui/dist
+
+# tarball do pnpm pack, gerado pelo check-consumer
+packages/ui/*.tgz
+apps/consumer-check/dist/
+# o lockfile é refeito a cada check:consumer, de propósito
+apps/consumer-check/pnpm-lock.yaml

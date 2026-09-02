@@ -1,0 +1,17 @@
+packages:
+  - "packages/ui"
+  # packages/poc-tamagui fica de fora de propósito: é a POC em Tamagui,
+  # congelada para comparação. Fora do workspace ela não instala dependências,
+  # não entra em build nenhum e não segura versão de ninguém.
+  - "apps/*"
+  # apps/consumer-check também fica de fora: ele depende do TARBALL, que só
+  # existe depois de rodar scripts/check-consumer.mjs. Dentro do workspace, um
+  # `pnpm install --frozen-lockfile` limpo (o do CI) falharia procurando um
+  # arquivo que não está versionado.
+  - "!apps/consumer-check"
+allowBuilds:
+  esbuild: true
+overrides:
+  react: 19.2.3
+  react-dom: 19.2.3
+  react-native: 0.86.3

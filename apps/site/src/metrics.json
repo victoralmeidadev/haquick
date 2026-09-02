@@ -1,0 +1,29 @@
+{
+  "components": {
+    "web": 63,
+    "native": 57
+  },
+  "webOnly": [
+    "BottomSheetClose",
+    "BottomSheetTrigger",
+    "DataTable",
+    "DialogClose",
+    "DialogTrigger",
+    "Grid",
+    "Tooltip"
+  ],
+  "loc": {
+    "reused": 421,
+    "core": 764,
+    "web": 2312,
+    "native": 1768,
+    "shared": 1185
+  },
+  "totalLoc": 5265,
+  "sharedPct": 22.5,
+  "bundle": {
+    "jsBytes": 401857,
+    "cssBytes": 24136,
+    "cssRules": 240
+  }
+}

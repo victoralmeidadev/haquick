@@ -1,0 +1,57 @@
+name: Release
+
+# Publica ao criar uma tag `v*` — `git tag v0.1.0 && git push --tags`.
+#
+# A tag é a fonte da verdade da versão: o job confere que ela bate com o
+# `version` do package.json antes de publicar. Sem isso, dá para publicar 0.1.0
+# a partir de uma tag v0.2.0 e ninguém percebe.
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Necessária para o provenance: o npm assina de onde o pacote saiu.
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Tag e package.json batem?
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG=$(node -p "require('./packages/ui/package.json').version")
+          if [ "$TAG" != "$PKG" ]; then
+            echo "tag v$TAG não bate com o package.json ($PKG)"
+            exit 1
+          fi
+          echo "publicando $PKG"
+
+      # Os mesmos passos do CI: uma tag não é motivo para publicar sem verificar.
+      - run: pnpm check
+      - run: pnpm --filter haquick build
+      - run: node scripts/check-package.mjs
+
+      # `pnpm publish` (e não `npm publish`) porque é ele que aplica o
+      # `publishConfig.exports`, trocando os caminhos de src por dist no
+      # pacote publicado.
+      #
+      # `--no-git-checks` porque o checkout de uma tag fica em detached HEAD, o
+      # que o pnpm recusaria por padrão.
+      - name: Publicar no npm
+        run: pnpm --filter haquick publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

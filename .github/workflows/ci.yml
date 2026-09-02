@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+# Um push novo cancela a execução anterior do mesmo ref — não adianta terminar
+# de verificar um commit que já foi substituído.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # `--frozen-lockfile` é o ponto: se o package.json e o lockfile
+      # divergirem, o CI falha em vez de resolver silenciosamente uma versão
+      # diferente da que roda na máquina de quem desenvolve.
+      - run: pnpm install --frozen-lockfile
+
+      # Nomenclatura em inglês, typecheck do pacote e do app native, e a
+      # suíte: contrato do CSS gerado, paridade web x native e fumaça dos
+      # componentes web.
+      - run: pnpm check
+
+      - name: Build do pacote
+        run: pnpm --filter haquick build
+
+      # O pacote publicado tem uma superfície própria (exports, files,
+      # publishConfig). Este passo confere que ela resolve de verdade.
+      - name: Verifica o pacote publicável
+        run: node scripts/check-package.mjs
+
+      # Empacota o tarball, instala num app fora do workspace e manda o Vite
+      # empacotar. É o único passo que exercita o que quem instala recebe:
+      # publishConfig.exports, haquick/styles.css e o CSS gerado no build.
+      - name: Verifica o consumo do pacote
+        run: node scripts/check-consumer.mjs
+
+      - name: Build do site
+        run: pnpm --filter site build
+
+      - name: Build do Storybook
+        run: pnpm --filter storybook build

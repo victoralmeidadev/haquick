@@ -1,0 +1,26 @@
+# Atualização de dependências.
+#
+# O diretório raiz cobre o workspace inteiro: o pnpm-lock.yaml da raiz é o que
+# resolve as versões de packages/ui e dos apps. `packages/poc-tamagui` fica de
+# fora sozinho, porque está fora do workspace e não entra no lockfile.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # Um PR por família, em vez de um por pacote: essas versões andam juntas.
+      radix:
+        patterns: ['@radix-ui/*']
+      react-native:
+        patterns: ['react-native*', 'expo*', '@expo/*', '@gorhom/*']
+      dev:
+        dependency-type: development
+
+  # As actions do workflow também envelhecem, e é onde mora o token de publicação.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

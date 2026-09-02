@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "moduleSuffixes": [".ios", ".android", ".native", ".web", ""],
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}

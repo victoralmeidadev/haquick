@@ -1,0 +1,20 @@
+{
+  "name": "cross-ui-monorepo",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "storybook": "pnpm --filter storybook dev",
+    "site": "pnpm --filter site dev",
+    "native": "pnpm --filter native-demo start",
+    "check": "node scripts/check-naming.mjs && pnpm --filter haquick typecheck && pnpm --filter native-demo typecheck && pnpm --filter haquick test",
+    "build": "pnpm build:lib && pnpm --filter storybook build && pnpm build:site",
+    "metrics": "node scripts/metrics.mjs",
+    "build:site": "pnpm --filter site build && node scripts/metrics.mjs --write && pnpm --filter site build",
+    "build:lib": "pnpm --filter haquick build",
+    "check:package": "pnpm --filter haquick build && node scripts/check-package.mjs",
+    "check:consumer": "pnpm build:lib && node scripts/check-consumer.mjs",
+    "test": "pnpm --filter haquick test",
+    "version:patch": "pnpm --filter haquick exec npm version patch --no-git-tag-version",
+    "version:minor": "pnpm --filter haquick exec npm version minor --no-git-tag-version"
+  }
+}
