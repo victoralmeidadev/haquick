@@ -1,4 +1,5 @@
 import { Badge, Button, IconButton, Link, useThemeMode } from 'haquick/web';
+import { version } from 'haquick/package.json';
 import type { Route } from '../routes';
 
 export function Nav({ route, onNavigate }: { route: Route; onNavigate: (route: Route) => void }) {
@@ -17,7 +18,7 @@ export function Nav({ route, onNavigate }: { route: Route; onNavigate: (route: R
             H
           </span>
           <span className="nav-name">Haquick</span>
-          <Badge intent="neutral">v0.1.0</Badge>
+          <Badge intent="neutral">v{version}</Badge>
         </button>
 
         <div className="nav-spacer" />
