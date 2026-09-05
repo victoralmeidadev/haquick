@@ -165,8 +165,8 @@ export const defaultPaletteOptions: Required<PaletteOptions> = {
   darkShade: 700,
   hoverShade: 600,
   pressShade: 700,
-  softShade: { light: 50, dark: 900 },
-  softHoverShade: { light: 100, dark: 800 },
+  softShade: { light: 50, dark: 800 },
+  softHoverShade: { light: 100, dark: 700 },
   contrastText: { light: '#FFFFFF', dark: '#0B0B0C' },
 };
 
@@ -191,13 +191,27 @@ export function resolveIntent(
 }
 
 export const baseColors: Record<keyof BaseIntents, string> = {
-  primary: '#3B82F6',
-  secondary: '#8B5CF6',
-  success: '#22C55E',
-  warning: '#F59E0B',
-  error: '#EF4444',
-  info: '#0EA5E9',
-  neutral: '#6B7280',
+  primary: '#3B5BDB',
+  secondary: '#0F766E',
+  success: '#15803D',
+  warning: '#B45309',
+  error: '#DC2626',
+  info: '#0E7490',
+  neutral: '#64748B',
+};
+
+/**
+ * As mesmas intenções no tema escuro: tons mais claros, com hover e press
+ * subindo em vez de descer. Valem só onde o app não informou a cor em `colors`.
+ */
+export const baseDarkColors: Record<keyof BaseIntents, IntentColorInput> = {
+  primary: { main: '#7C93FF', hover: '#93A6FF', press: '#A9B8FF' },
+  secondary: { main: '#2DD4BF', hover: '#5EEAD4', press: '#99F6E4' },
+  success: { main: '#4ADE80', hover: '#86EFAC', press: '#BBF7D0' },
+  warning: { main: '#FBBF24', hover: '#FCD34D', press: '#FDE68A' },
+  error: { main: '#F87171', hover: '#FCA5A5', press: '#FECACA' },
+  info: { main: '#22D3EE', hover: '#67E8F9', press: '#A5F3FC' },
+  neutral: { main: '#94A3B8', hover: '#B4BFCD', press: '#CBD5E1' },
 };
 
 export const intents = Object.keys(baseColors) as ColorIntent[];

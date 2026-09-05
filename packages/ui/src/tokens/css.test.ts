@@ -73,9 +73,9 @@ describe('sombra', () => {
   it('inverte a cor entre claro e escuro', () => {
     // O bug original: a cor era um preto fixo no código e a sombra saía
     // idêntica nos dois temas, sumindo no escuro.
-    expect(bloco(css(), ':root')).toContain('--haquick-shadow-3: 0 4px 14px rgba(11,11,12,');
+    expect(bloco(css(), ':root')).toContain('--haquick-shadow-3: 0 4px 14px rgba(15,23,42,');
     expect(bloco(css(), '[data-scheme="dark"]')).toContain(
-      '--haquick-shadow-3: 0 4px 14px rgba(255,255,255,'
+      '--haquick-shadow-3: 0 4px 14px rgba(199,210,254,'
     );
   });
 
@@ -84,7 +84,7 @@ describe('sombra', () => {
       [DEFAULT_THEME]: createTheme({ shadows: { opacityScale: { light: 1, dark: 0.5 } } }),
     });
     // 0.1 de opacidade no nível 3, vezes 0.5.
-    expect(bloco(forte, '[data-scheme="dark"]')).toContain('rgba(255,255,255,0.05)');
+    expect(bloco(forte, '[data-scheme="dark"]')).toContain('rgba(199,210,254,0.05)');
   });
 
   it('respeita intensity: 0 desligando tudo', () => {
@@ -103,6 +103,19 @@ describe('cores por scheme', () => {
     const source = generateThemeCSS({ [DEFAULT_THEME]: theme });
     expect(bloco(source, ':root')).toContain('--haquick-primary: #C8102E;');
     expect(bloco(source, '[data-scheme="dark"]')).toContain('--haquick-primary: #F2617A;');
+  });
+
+  it('a cor informada em colors vale no escuro mesmo com o padrão escuro embutido', () => {
+    const custom = createTheme({ colors: { primary: '#C8102E' } });
+    const dark = custom.themes.dark as unknown as Record<string, string>;
+    expect(dark.primary).toBe('#C8102E');
+  });
+
+  it('sem colors, o escuro usa o tom claro padrão da intenção', () => {
+    const dark = defaultThemeConfig.themes.dark as unknown as Record<string, string>;
+    const light = defaultThemeConfig.themes.light as unknown as Record<string, string>;
+    expect(dark.primary).toBe('#7C93FF');
+    expect(light.primary).toBe('#3B5BDB');
   });
 
   it('deriva os slots da cor daquele scheme, não da de fora', () => {

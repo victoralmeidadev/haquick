@@ -27,7 +27,7 @@ body {
 /* Fundo antes do React montar, para a página não piscar branco no tema escuro.
    O ThemeProvider escreve data-scheme no <html>. */
 :root[data-scheme='dark'] body {
-  background: #0b0b0c;
+  background: #0F1117;
 }
 
 /* Alvos de âncora: o cabeçalho é fixo, então o salto precisa parar antes do

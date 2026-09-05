@@ -1,5 +1,6 @@
 import {
   baseColors,
+  baseDarkColors,
   defaultPaletteOptions,
   type PaletteOptions,
 } from './palette';
@@ -61,12 +62,20 @@ export function createTheme(input: ThemeConfigInput = {}): ThemeConfig {
     dark: { ...defaultSurfaces.dark, ...input.schemes?.dark?.surfaces },
   };
 
+  const userColors = input.colors ?? {};
+  const darkDefaults = Object.fromEntries(
+    Object.entries(baseDarkColors).filter(([intent]) => !(intent in userColors))
+  );
+
   return {
     themes: createAppThemes(
-      { ...baseColors, ...input.colors },
+      { ...baseColors, ...userColors },
       { ...defaultPaletteOptions, ...input.palette },
       surfaces,
-      { light: input.schemes?.light?.colors, dark: input.schemes?.dark?.colors }
+      {
+        light: input.schemes?.light?.colors,
+        dark: { ...darkDefaults, ...input.schemes?.dark?.colors },
+      }
     ),
     radii: createRadiusTokens(shape),
     shape,

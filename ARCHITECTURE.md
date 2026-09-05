@@ -33,6 +33,16 @@ scheme.
 
 Guarda: `css.test.ts` ("cores por scheme").
 
+### O escuro padrão só vale onde o app não definiu a cor
+
+`baseDarkColors` traz tons mais claros para as intenções no tema escuro, com
+hover e press explícitos — derivados dos shades 600/700 de um tom claro, eles
+sairiam quase pretos. Esses padrões entram apenas nas intenções ausentes de
+`colors`: quem escreve `colors: { primary }` espera que valha nos dois schemes,
+e um override escuro embutido quebraria essa expectativa em silêncio.
+
+Guarda: `css.test.ts` ("cores por scheme").
+
 ### Elevação é sombra, não fundo
 
 `raised` muda só a sombra. No tema escuro, quem inverte é a **cor** da sombra

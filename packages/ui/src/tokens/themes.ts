@@ -26,22 +26,22 @@ export type SurfaceColors = {
 
 export const defaultSurfaces: { light: SurfaceColors; dark: SurfaceColors } = {
   light: {
-    background: '#FFFFFF',
-    backgroundHover: '#F5F5F6',
-    backgroundPress: '#EAEAEC',
-    color: '#0B0B0C',
-    colorHover: '#0B0B0C',
-    borderColor: '#E4E4E7',
-    shadowColor: '#0B0B0C',
+    background: '#FBFBFD',
+    backgroundHover: '#F1F3F8',
+    backgroundPress: '#E6E9F0',
+    color: '#0F172A',
+    colorHover: '#0F172A',
+    borderColor: '#E2E6EE',
+    shadowColor: '#0F172A',
   },
   dark: {
-    background: '#0B0B0C',
-    backgroundHover: '#1A1A1C',
-    backgroundPress: '#242426',
-    color: '#F5F5F6',
+    background: '#0F1117',
+    backgroundHover: '#171A22',
+    backgroundPress: '#1F232D',
+    color: '#E6E8EE',
     colorHover: '#FFFFFF',
-    borderColor: '#2A2A2E',
-    shadowColor: '#FFFFFF',
+    borderColor: '#262A35',
+    shadowColor: '#C7D2FE',
   },
 };
 

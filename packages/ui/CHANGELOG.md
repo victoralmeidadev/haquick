@@ -6,9 +6,22 @@ Enquanto a versão for `0.x`, **um minor pode quebrar a API** — veja
 
 ## [Não publicado]
 
-### 0.1.0 — primeira versão
+### 0.1.1
 
-Ainda não publicada no npm. O que existe hoje:
+- **Nova paleta padrão.** Uma cor de marca (índigo `#3B5BDB`), secondary em
+  teal, semânticas no tom 700 no claro e tons claros no escuro, neutros
+  ardósia e fundos `#FBFBFD` / `#0F1117`. No escuro, hover e press das
+  intenções sobem em vez de descer, e as superfícies `soft` ficam mais legíveis
+  (tom 800 em vez de 900).
+- `ListItem`, `AccordionItem` e `ToolCall` não cortam mais o conteúdo à
+  direita.
+- `Badge` alinha ao centro numa linha, nas duas plataformas.
+- Storybook: código de exemplo sem o layout de apresentação; uma story por
+  variante.
+
+### 0.1.0
+
+Publicada no npm. O que existe:
 
 **Componentes.** 63 na web e 57 no React Native, com as mesmas props. As
 diferenças são declaradas e testadas em `src/api-parity.test.ts`:
