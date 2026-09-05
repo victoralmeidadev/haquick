@@ -9,7 +9,7 @@
     "expo": "~57.0.19",
     "expo-dev-client": "~57.0.18",
     "expo-status-bar": "~57.0.1",
-    "react": "19.2.3",
+    "react": "19.2.8",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-reanimated": "^4.5.1",
@@ -23,7 +23,7 @@
     "@storybook/addon-ondevice-notes": "^8.6.4",
     "@storybook/react": "8.6.14",
     "@storybook/react-native": "8.6.4",
-    "@types/react": "~19.2.2",
+    "@types/react": "~19.2.18",
     "cross-env": "^10.1.0",
     "storybook": "^8.6.14",
     "typescript": "~6.0.3"
