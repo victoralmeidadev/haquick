@@ -6,7 +6,7 @@ Enquanto a versão for `0.x`, **um minor pode quebrar a API** — veja
 
 ## [Não publicado]
 
-### 0.1.1
+## [0.1.1] — 2026-09-05
 
 - **Nova paleta padrão.** Uma cor de marca (índigo `#3B5BDB`), secondary em
   teal, semânticas no tom 700 no claro e tons claros no escuro, neutros
@@ -19,9 +19,9 @@ Enquanto a versão for `0.x`, **um minor pode quebrar a API** — veja
 - Storybook: código de exemplo sem o layout de apresentação; uma story por
   variante.
 
-### 0.1.0
+## [0.1.0] — 2026-09-05
 
-Publicada no npm. O que existe:
+O que existe:
 
 **Componentes.** 63 na web e 57 no React Native, com as mesmas props. As
 diferenças são declaradas e testadas em `src/api-parity.test.ts`:
