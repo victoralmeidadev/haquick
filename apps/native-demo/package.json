@@ -17,16 +17,16 @@
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
-    "@storybook/addon-ondevice-actions": "^8.6.4",
-    "@storybook/addon-ondevice-backgrounds": "^8.6.4",
-    "@storybook/addon-ondevice-controls": "^8.6.4",
-    "@storybook/addon-ondevice-notes": "^8.6.4",
-    "@storybook/react": "8.6.14",
-    "@storybook/react-native": "8.6.4",
+    "@storybook/addon-ondevice-actions": "^10.5.4",
+    "@storybook/addon-ondevice-backgrounds": "^10.5.4",
+    "@storybook/addon-ondevice-controls": "^10.5.4",
+    "@storybook/addon-ondevice-notes": "^10.5.4",
+    "@storybook/react": "10.6.0",
+    "@storybook/react-native": "10.5.4",
     "@types/react": "~19.2.2",
     "cross-env": "^10.1.0",
     "storybook": "^8.6.14",
-    "typescript": "~6.0.3"
+    "typescript": "~7.0.2"
   },
   "scripts": {
     "start": "expo start",
