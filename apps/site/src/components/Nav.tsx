@@ -1,4 +1,4 @@
-import { Badge, Button, IconButton, useThemeMode } from 'haquick/web';
+import { Badge, Button, IconButton, Link, useThemeMode } from 'haquick/web';
 import type { Route } from '../routes';
 
 export function Nav({ route, onNavigate }: { route: Route; onNavigate: (route: Route) => void }) {
@@ -13,7 +13,6 @@ export function Nav({ route, onNavigate }: { route: Route; onNavigate: (route: R
           aria-label="Ir para a home"
           onClick={() => onNavigate('home')}
         >
-          {/* Marca: quadrado com a inicial, em vez de só texto. */}
           <span className="nav-mark" aria-hidden="true">
             H
           </span>
@@ -39,6 +38,9 @@ export function Nav({ route, onNavigate }: { route: Route; onNavigate: (route: R
         >
           Documentação
         </Button>
+        <Link href="/storybook/" intent="neutral" underline="hover" size="sm">
+          Storybook
+        </Link>
 
         <IconButton
           label={resolvedMode === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
