@@ -10,12 +10,19 @@ export default meta;
 type Story = StoryObj;
 
 export const Horizontal: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3} width={320}>
+    <>
       <Typography variant="body2">Acima</Typography>
       <Divider />
       <Typography variant="body2">Abaixo</Typography>
-    </YStack>
+    </>
   ),
 };
 

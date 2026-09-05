@@ -10,8 +10,15 @@ export default meta;
 type Story = StoryObj;
 
 export const Conversation: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={2} width={560}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={2} width={560}>
+    <>
       <MessageList>
         <Message role="system">Conversa iniciada</Message>
         <Message role="user" timestamp="10:32">Quantos pedidos foram cancelados?</Message>
@@ -39,30 +46,42 @@ export const Conversation: Story = {
       </MessageList>
       <Suggestions items={['Resumir o mês', 'Top 5 clientes']} onSelect={() => {}} />
       <Composer onSend={() => {}} />
-    </YStack>
+    </>
   ),
 };
 
 export const ToolCallStates: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} width={560}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3} width={560}>
+    <>
       <ToolCall name="executando" status="running" />
       <ToolCall name="concluida" status="success" result={'{ "ok": true }'} />
       <ToolCall name="falhou" status="error" args={'{ "id": 42 }'} />
-    </YStack>
+    </>
   ),
 };
 
 export const Streaming: Story = {
+  decorators: [
+    (Story) => (
+      <YStack width={560}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack width={560}>
-      <MessageList>
-        <Message role="user">Escreva um resumo</Message>
-        <Message role="assistant" streaming avatar={<Avatar size="sm" initials="AI" />}>
-          O texto vai chegando
-        </Message>
-        <Message role="user" status="error">Esta falhou ao enviar</Message>
-      </MessageList>
-    </YStack>
+    <MessageList>
+      <Message role="user">Escreva um resumo</Message>
+      <Message role="assistant" streaming avatar={<Avatar size="sm" initials="AI" />}>
+        O texto vai chegando
+      </Message>
+      <Message role="user" status="error">Esta falhou ao enviar</Message>
+    </MessageList>
   ),
 };

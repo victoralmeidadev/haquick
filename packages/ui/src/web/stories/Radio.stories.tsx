@@ -29,12 +29,17 @@ export const Row: Story = {
 };
 
 export const Disabled: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3}>
-      <RadioGroup defaultValue="a" disabled>
-        <Radio value="a" label="Grupo inteiro desabilitado" />
-        <Radio value="b" label="Segunda opção" />
-      </RadioGroup>
-    </YStack>
+    <RadioGroup defaultValue="a" disabled>
+      <Radio value="a" label="Grupo inteiro desabilitado" />
+      <Radio value="b" label="Segunda opção" />
+    </RadioGroup>
   ),
 };

@@ -10,20 +10,34 @@ export default meta;
 type Story = StoryObj;
 
 export const Sizes: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={3} align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={3} align="center">
+    <>
       <Spinner size="sm" />
       <Spinner size="lg" />
-    </XStack>
+    </>
   ),
 };
 
 export const Intents: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={3} align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={3} align="center">
+    <>
       {(['primary', 'secondary', 'success', 'warning', 'error', 'info', 'neutral'] as const).map((i) => (
         <Spinner key={i} intent={i} />
       ))}
-    </XStack>
+    </>
   ),
 };

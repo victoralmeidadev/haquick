@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Dialog, Typography, YStack } from '../index';
+import { Button, Dialog, YStack } from '../index';
 
 const meta: Meta = {
   title: 'Componentes/Dialog',
@@ -11,14 +11,18 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} align="start">
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => {
     const [open, setOpen] = useState(false);
 
     return (
-    <YStack gap={3} align="start">
-      <Typography variant="body2" intent="neutral">
-        Foco preso, Esc, clique fora e trava de rolagem vêm do Radix.
-      </Typography>
+    <>
       <Button onPress={() => setOpen(true)}>Abrir diálogo</Button>
       <Dialog
         open={open}
@@ -32,7 +36,7 @@ export const Default: Story = {
           </>
         }
       />
-    </YStack>
+    </>
     );
   },
 };

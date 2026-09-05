@@ -1,8 +1,3 @@
-# Atualização de dependências.
-#
-# O diretório raiz cobre o workspace inteiro: o pnpm-lock.yaml da raiz é o que
-# resolve as versões de packages/ui e dos apps. `packages/poc-tamagui` fica de
-# fora sozinho, porque está fora do workspace e não entra no lockfile.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -11,15 +6,34 @@ updates:
       interval: weekly
     open-pull-requests-limit: 5
     groups:
-      # Um PR por família, em vez de um por pacote: essas versões andam juntas.
       radix:
         patterns: ['@radix-ui/*']
-      react-native:
-        patterns: ['react-native*', 'expo*', '@expo/*', '@gorhom/*']
       dev:
         dependency-type: development
+    ignore:
+      # O ecossistema React Native segue a versão do Expo SDK e é atualizado
+      # com `npx expo install --fix`, nunca isoladamente.
+      - dependency-name: 'react'
+      - dependency-name: 'react-dom'
+      - dependency-name: 'react-native*'
+      - dependency-name: 'expo*'
+      - dependency-name: '@expo/*'
+      - dependency-name: '@react-native-async-storage/*'
+      - dependency-name: '@gorhom/*'
+      - dependency-name: '@storybook/react-native*'
+      - dependency-name: '@storybook/addon-ondevice-*'
+      # Majors destes exigem migração manual; o patch e o minor continuam vindo.
+      - dependency-name: '@storybook/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'storybook'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'vite'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@vitejs/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@tanstack/*'
+        update-types: ['version-update:semver-major']
 
-  # As actions do workflow também envelhecem, e é onde mora o token de publicação.
   - package-ecosystem: github-actions
     directory: /
     schedule:

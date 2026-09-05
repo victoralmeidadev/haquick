@@ -10,41 +10,69 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={1} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={1} width={320}>
+    <>
       <Label required>E-mail</Label>
       <Input placeholder="voce@empresa.com" inputMode="email" />
       <HelperText>Usamos só para o recibo.</HelperText>
-    </YStack>
+    </>
   ),
 };
 
 export const Error: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={1} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={1} width={320}>
+    <>
       <Label required>Senha</Label>
       <Input secure defaultValue="123" error />
       <HelperText error>Mínimo de 8 caracteres.</HelperText>
-    </YStack>
+    </>
   ),
 };
 
 export const Sizes: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={2} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={2} width={320}>
+    <>
       <Input size="sm" placeholder="Pequeno" />
       <Input size="md" placeholder="Médio" />
       <Input size="lg" placeholder="Grande" />
       <Input disabled placeholder="Desabilitado" />
-    </YStack>
+    </>
   ),
 };
 
 export const Multiline: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={1} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={1} width={320}>
+    <>
       <Label>Observações</Label>
       <Input multiline rows={4} placeholder="Opcional" />
-    </YStack>
+    </>
   ),
 };

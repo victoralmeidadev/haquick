@@ -35,25 +35,35 @@ const COLUMNS: ColumnDef<Order>[] = [
 ];
 
 export const Full: Story = {
+  decorators: [
+    (Story) => (
+      <YStack width={760}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack width={760}>
-      <DataTable
-        label="Pedidos"
-        data={ORDERS}
-        columns={COLUMNS}
-        sortable
-        filterable
-        selectable
-        pageSize={4}
-      />
-    </YStack>
+    <DataTable
+      label="Pedidos"
+      data={ORDERS}
+      columns={COLUMNS}
+      sortable
+      filterable
+      selectable
+      pageSize={4}
+    />
   ),
 };
 
 export const Empty: Story = {
+  decorators: [
+    (Story) => (
+      <YStack width={760}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack width={760}>
-      <DataTable label="Pedidos" data={[]} columns={COLUMNS} filterable />
-    </YStack>
+    <DataTable label="Pedidos" data={[]} columns={COLUMNS} filterable />
   ),
 };

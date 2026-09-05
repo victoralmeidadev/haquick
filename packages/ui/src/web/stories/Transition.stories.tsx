@@ -11,12 +11,19 @@ export default meta;
 type Story = StoryObj;
 
 export const FadeAndCollapse: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} width={420}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => {
     const [fade, setFade] = useState(true);
     const [open, setOpen] = useState(false);
 
     return (
-    <YStack gap={3} width={420}>
+    <>
       <XStack gap={2}>
         <Button size="sm" onPress={() => setFade((v) => !v)}>Fade</Button>
         <Button size="sm" variant="outline" intent="neutral" onPress={() => setOpen((v) => !v)}>
@@ -32,30 +39,33 @@ export const FadeAndCollapse: Story = {
 
       <Collapse open={open}>
         <Card raised={1}>
-          <Typography variant="body2">
-            Altura medida com ResizeObserver — altura automática não interpola.
-          </Typography>
+          <Typography variant="body2">Transição de altura.</Typography>
         </Card>
       </Collapse>
-    </YStack>
+    </>
     );
   },
 };
 
 export const SingleOpenAccordion: Story = {
+  decorators: [
+    (Story) => (
+      <YStack width={420}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack width={420}>
-      <Accordion>
-        <AccordionItem first title="O que é universal?" defaultOpen>
-          As props. A implementação é escrita uma vez por plataforma.
-        </AccordionItem>
-        <AccordionItem title="Preciso de react-native-web?">
-          Não. Na web os componentes são HTML com CSS.
-        </AccordionItem>
-        <AccordionItem title="E o compilador?">
-          Não existe. Vite e Metro padrão.
-        </AccordionItem>
-      </Accordion>
-    </YStack>
+    <Accordion>
+      <AccordionItem first title="Como altero o plano?" defaultOpen>
+        Em Configurações, na aba Cobrança. A mudança vale a partir do próximo ciclo.
+      </AccordionItem>
+      <AccordionItem title="Posso cancelar a qualquer momento?">
+        Sim. O acesso continua até o fim do período já pago.
+      </AccordionItem>
+      <AccordionItem title="Como exporto meus dados?">
+        Em Configurações, na aba Dados, em qualquer formato aberto.
+      </AccordionItem>
+    </Accordion>
   ),
 };

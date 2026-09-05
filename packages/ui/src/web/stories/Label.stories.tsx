@@ -10,17 +10,34 @@ export default meta;
 type Story = StoryObj;
 
 export const WithField: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={1} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3} width={320}>
-      <YStack gap={1}>
-        <Label>Nome</Label>
-        <Input placeholder="Opcional" />
+    <>
+      <Label>Nome</Label>
+      <Input placeholder="Opcional" />
+    </>
+  ),
+};
+
+export const Required: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={1} width={320}>
+        <Story />
       </YStack>
-      <YStack gap={1}>
-        <Label required>E-mail</Label>
-        <Input placeholder="Obrigatório" />
-        <HelperText>O asterisco vem do required.</HelperText>
-      </YStack>
-    </YStack>
+    ),
+  ],
+  render: () => (
+    <>
+      <Label required>E-mail</Label>
+      <Input placeholder="Obrigatório" />
+      <HelperText>O asterisco vem de required.</HelperText>
+    </>
   ),
 };

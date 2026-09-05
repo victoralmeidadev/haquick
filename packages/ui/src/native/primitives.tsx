@@ -138,8 +138,10 @@ export function CardMedia({ src, alt, height = 160 }: { src: string; alt?: strin
 export function Badge({ children, intent = 'primary' }: BadgeProps) {
   const theme = useTheme();
   return (
-    <View style={[styles.badge, { backgroundColor: themeColor(theme, intent), borderRadius: radii.radiusFull }]}>
-      <Text style={[styles.badgeText, { color: themeColor(theme, `${intent}ContrastText`) }]}>{children}</Text>
+    <View style={styles.badgeRow}>
+      <View style={[styles.badge, { backgroundColor: themeColor(theme, intent), borderRadius: radii.radiusFull }]}>
+        <Text style={[styles.badgeText, { color: themeColor(theme, `${intent}ContrastText`) }]}>{children}</Text>
+      </View>
     </View>
   );
 }
@@ -339,6 +341,7 @@ const styles = StyleSheet.create({
   cardHead: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingBottom: 12 },
   cardContent: { flexDirection: 'column', gap: 8 },
   cardFoot: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingTop: 12 },
-  badge: { alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 2 },
+  badgeRow: { flexDirection: 'row' },
+  badge: { paddingHorizontal: 8, paddingVertical: 2 },
   badgeText: { fontSize: 12, lineHeight: 16, fontWeight: '600' },
 });

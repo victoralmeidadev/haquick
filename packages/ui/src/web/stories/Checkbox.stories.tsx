@@ -10,32 +10,53 @@ export default meta;
 type Story = StoryObj;
 
 export const States: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={2} align="start">
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={2} align="start">
+    <>
       <Checkbox label="Não marcado" />
       <Checkbox label="Marcado" defaultChecked />
       <Checkbox label="Indeterminado" indeterminate />
       <Checkbox label="Desabilitado" disabled defaultChecked />
-    </YStack>
+    </>
   ),
 };
 
 export const Sizes: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={4} align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={4} align="center">
+    <>
       <Checkbox label="sm" size="sm" defaultChecked />
       <Checkbox label="md" size="md" defaultChecked />
       <Checkbox label="lg" size="lg" defaultChecked />
-    </XStack>
+    </>
   ),
 };
 
 export const Intents: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={3} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={3} wrap align="center">
+    <>
       {(['primary', 'secondary', 'success', 'warning', 'error', 'info', 'neutral'] as const).map((i) => (
         <Checkbox key={i} label={i} intent={i} defaultChecked />
       ))}
-    </XStack>
+    </>
   ),
 };

@@ -10,11 +10,18 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={3} wrap>
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={3} wrap>
+    <>
       <StatCard label="Receita" value="R$ 128k" hint="+12% vs. mês anterior" intent="success" />
       <StatCard label="Pedidos" value="1.284" hint="+3%" />
       <StatCard label="Cancelamentos" value="37" hint="+8%" intent="error" />
-    </XStack>
+    </>
   ),
 };

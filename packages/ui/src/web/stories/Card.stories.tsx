@@ -10,14 +10,21 @@ export default meta;
 type Story = StoryObj;
 
 export const Elevation: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={4} wrap>
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={4} wrap>
+    <>
       {([0, 1, 2, 3, 4, 5] as const).map((n) => (
         <Card key={n} raised={n} width={130}>
           <Typography variant="subtitle2">raised={n}</Typography>
         </Card>
       ))}
-    </XStack>
+    </>
   ),
 };
 

@@ -10,13 +10,20 @@ export default meta;
 type Story = StoryObj;
 
 export const Variants: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} width={320}>
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3} width={320}>
+    <>
       <Skeleton variant="text" />
       <Skeleton variant="text" width="70%" />
       <Skeleton variant="rectangular" height={80} />
       <Skeleton variant="circular" width={48} height={48} />
-    </YStack>
+    </>
   ),
 };
 

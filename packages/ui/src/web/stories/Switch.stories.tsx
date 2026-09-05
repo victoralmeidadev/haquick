@@ -10,21 +10,35 @@ export default meta;
 type Story = StoryObj;
 
 export const States: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={2} align="start">
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={2} align="start">
+    <>
       <Switch label="Desligado" />
       <Switch label="Ligado" defaultChecked />
       <Switch label="Desabilitado" disabled defaultChecked />
-    </YStack>
+    </>
   ),
 };
 
 export const Sizes: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={4} align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={4} align="center">
+    <>
       <Switch size="sm" defaultChecked />
       <Switch size="md" defaultChecked />
       <Switch size="lg" defaultChecked />
-    </XStack>
+    </>
   ),
 };

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Chip, XStack, YStack, Typography } from '../index';
+import { Chip, XStack } from '../index';
 
 const meta: Meta = {
   title: 'Componentes/Chip',
@@ -9,28 +9,88 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Variants: Story = {
+export const Solid: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={2} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <YStack gap={3}>
-      {(['solid','soft','outline','ghost'] as const).map((variant) => (
-        <XStack key={variant} gap={2} wrap align="center">
-          <Typography variant="overline" intent="neutral">{variant}</Typography>
-          {(['primary','success','error'] as const).map((intent) => (
-            <Chip key={intent} variant={variant} intent={intent}>{intent}</Chip>
-          ))}
-        </XStack>
+    <>
+      {(['primary', 'success', 'error'] as const).map((intent) => (
+        <Chip key={intent} variant="solid" intent={intent}>{intent}</Chip>
       ))}
-    </YStack>
+    </>
+  ),
+};
+
+export const Soft: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={2} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
+  render: () => (
+    <>
+      {(['primary', 'success', 'error'] as const).map((intent) => (
+        <Chip key={intent} variant="soft" intent={intent}>{intent}</Chip>
+      ))}
+    </>
+  ),
+};
+
+export const Outline: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={2} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
+  render: () => (
+    <>
+      {(['primary', 'success', 'error'] as const).map((intent) => (
+        <Chip key={intent} variant="outline" intent={intent}>{intent}</Chip>
+      ))}
+    </>
+  ),
+};
+
+export const Ghost: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={2} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
+  render: () => (
+    <>
+      {(['primary', 'success', 'error'] as const).map((intent) => (
+        <Chip key={intent} variant="ghost" intent={intent}>{intent}</Chip>
+      ))}
+    </>
   ),
 };
 
 export const Removable: Story = {
+  decorators: [
+    (Story) => (
+      <XStack gap={2} wrap align="center">
+        <Story />
+      </XStack>
+    ),
+  ],
   render: () => (
-    <XStack gap={2} wrap align="center">
+    <>
       <Chip intent="primary" onRemove={() => {}}>com remover</Chip>
       <Chip intent="secondary" onPress={() => {}}>clicável</Chip>
       <Chip size="sm" intent="success">pequeno</Chip>
       <Chip disabled>desabilitado</Chip>
-    </XStack>
+    </>
   ),
 };

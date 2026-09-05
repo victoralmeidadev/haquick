@@ -26,8 +26,7 @@ function Cell({ label }: { label: string }) {
   );
 }
 
-export const Doze: Story = {
-  name: 'Doze colunas',
+export const TwelveColumns: Story = {
   render: () => (
     <Grid container spacing={2}>
       {Array.from({ length: 12 }, (_, i) => (
@@ -39,7 +38,7 @@ export const Doze: Story = {
   ),
 };
 
-export const Responsivo: Story = {
+export const Responsive: Story = {
   render: () => (
     <Grid container spacing={3}>
       {['A', 'B', 'C', 'D'].map((label) => (
@@ -52,7 +51,6 @@ export const Responsivo: Story = {
 };
 
 export const Offset: Story = {
-  name: 'Deslocamento',
   render: () => (
     <Grid container spacing={2}>
       <Grid size={6}>
@@ -68,8 +66,7 @@ export const Offset: Story = {
   ),
 };
 
-export const AutoEGrow: Story = {
-  name: 'auto e grow',
+export const AutoAndGrow: Story = {
   render: () => (
     <Grid container spacing={2}>
       <Grid size="auto">
@@ -85,7 +82,7 @@ export const AutoEGrow: Story = {
   ),
 };
 
-export const Aninhado: Story = {
+export const Nested: Story = {
   render: () => (
     <Grid container spacing={3}>
       <Grid size={{ xs: 12, md: 8 }}>
@@ -105,8 +102,7 @@ export const Aninhado: Story = {
   ),
 };
 
-export const OutraContagem: Story = {
-  name: 'columns',
+export const CustomColumns: Story = {
   render: () => (
     <Grid container spacing={2} columns={5}>
       {['1/5', '2/5', '2/5'].map((label, i) => (

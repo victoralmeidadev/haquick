@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { BottomSheet, Button, Input, Label, Typography, YStack } from '../index';
+import { BottomSheet, Button, Input, Label, YStack } from '../index';
 
 const meta: Meta = {
   title: 'Componentes/BottomSheet',
@@ -11,15 +11,18 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <YStack gap={3} align="start">
+        <Story />
+      </YStack>
+    ),
+  ],
   render: () => {
     const [open, setOpen] = useState(false);
 
     return (
-    <YStack gap={3} align="start">
-      <Typography variant="body2" intent="neutral">
-        No native é o @gorhom/bottom-sheet, com arraste e snap points. Na web, um diálogo
-        ancorado embaixo — mesma API.
-      </Typography>
+    <>
       <Button onPress={() => setOpen(true)}>Abrir folha</Button>
       <BottomSheet
         open={open}
@@ -34,7 +37,7 @@ export const Default: Story = {
           <Input placeholder="Nome ou e-mail" />
         </YStack>
       </BottomSheet>
-    </YStack>
+    </>
     );
   },
 };
